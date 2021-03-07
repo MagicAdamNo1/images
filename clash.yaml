@@ -149,7 +149,7 @@ proxies:
     server: elonsms.pp.ua
     port: 443
     uuid: 2de653d6-e8a9-4ddf-80bc-5c45ac42c020
-    alterId: 64
+    alterId: 0
     cipher: auto
     # udp: true
     tls: true
