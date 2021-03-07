@@ -54,7 +54,7 @@ dns:
 
   ipv6: false # default is false
 
-  listen: 0.0.0.0:53
+#   listen: 0.0.0.0:53
 
   default-nameserver: # resolve dns nameserver host, should fill pure IP
     # aka Bootstrap DNS
