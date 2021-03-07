@@ -969,6 +969,7 @@ rules:
   - DOMAIN-SUFFIX,avg.com,PROXY
   - DOMAIN-SUFFIX,avgle.com,PROXY
   - DOMAIN-SUFFIX,badoo.com,PROXY
+  - DOMAIN-SUFFIX,badoocdn.com,PROXY
   - DOMAIN-SUFFIX,bandwagonhost.com,PROXY
   - DOMAIN-SUFFIX,bbc.com,PROXY
   - DOMAIN-SUFFIX,behance.net,PROXY
