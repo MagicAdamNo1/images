@@ -1106,6 +1106,7 @@ rules:
   - DOMAIN-SUFFIX,matters.news,PROXY
   - DOMAIN-SUFFIX,maying.co,PROXY
   - DOMAIN-SUFFIX,medium.com,PROXY
+  - DOMAIN-SUFFIX,meetme.com,PROXY
   - DOMAIN-SUFFIX,mega.nz,PROXY
   - DOMAIN-SUFFIX,mil,PROXY
   - DOMAIN-SUFFIX,mingpao.com,PROXY
