@@ -180,7 +180,7 @@ proxies:
 
   # vmess
   # cipher support auto/aes-128-gcm/chacha20-poly1305/none
-  - name: "vmess"
+  - name: "vt"
     type: vmess
     server: elonsms.pp.ua
     port: 443
@@ -323,9 +323,7 @@ proxy-groups:
   - name: "fallback-auto"
     type: fallback
     proxies:
-      - ss1
-      - ss2
-      - vmess1
+      - vt
     url: "http://www.gstatic.com/generate_204"
     interval: 300
 
@@ -342,11 +340,11 @@ proxy-groups:
 
   # select is used for selecting proxy or proxy group
   # you can use RESTful API to switch proxy is recommended for use in GUI.
-  - name: Proxy
+  - name: PROXY
     type: select
     # disable-udp: true
     proxies:
-      - vmess
+      - vt
 
   # - name: UseProvider
   #   type: select
