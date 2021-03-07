@@ -138,7 +138,7 @@ proxies:
     network: ws
     ws-path: /flex
     ws-headers: #这一行后面不要写东西
-    Host: elonsms.pp.ua # 填你的主机名
+     Host: elonsms.pp.ua # 填你的主机名
 
 # Trojan
 # - name: "trojan"
