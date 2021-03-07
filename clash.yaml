@@ -1,111 +1,148 @@
-# HTTP 端口
+# Port of HTTP(S) proxy server on the local end
 port: 7890
 
-# SOCKS5 端口
+# Port of SOCKS5 proxy server on the local end
 socks-port: 7891
 
-# Linux 及 macOS 的 redir 端口
+# Transparent proxy server port for Linux and macOS (Redirect TCP and TProxy UDP)
 # redir-port: 7892
 
-allow-lan: false
+# Transparent proxy server port for Linux (TProxy TCP and TProxy UDP)
+# tproxy-port: 7893
 
-# 仅适用于设置 allow-lan 为 true 时
-# "*": 绑定所有 IP 地址
-# 192.168.122.11: 绑定单个 IPv4 地址
-# "[aaaa::a8aa:ff:fe09:57d8]": 绑定单个 IPv6 地址
-# bind-address: "*"
+# HTTP(S) and SOCKS5 server on the same port
+# mixed-port: 7890
 
-# Rule / Global / Direct (默认为 Rule 模式)
-mode: Rule
-
-# 设置输出日志的等级 (默认为 info)
-# info / warning / error / debug / silent
-log-level: debug
-
-# RESTful API for clash
-external-controller: 127.0.0.1:9090
-
-# you can put the static web resource (such as clash-dashboard) to a directory, and clash would serve in `${API}/ui`
-# input is a relative path to the configuration directory or an absolute path
-# external-ui: folder
-
-# Secret for RESTful API (Optional)
-# secret: ""
-
-# 实验性功能
-experimental:
-  ignore-resolve-fail: true # 忽略 DNS 解析失败，默认值为true
-  # interface-name: en0 # 出站接口名称
-
-# 本地 SOCKS5/HTTP(S) 服务器认证
+# authentication of local SOCKS5/HTTP(S) server
 # authentication:
 #  - "user1:pass1"
 #  - "user2:pass2"
 
-# # 实验性 hosts, 支持通配符（如 *.clash.dev 甚至 *.foo.*.examplex.com ）
-# # 静态域的优先级高于通配符域（foo.example.com > *.example.com）
+# Set to true to allow connections to the local-end server from
+# other LAN IP addresses
+allow-lan: false
+
+# This is only applicable when `allow-lan` is `true`
+# '*': bind all IP addresses
+# 192.168.122.11: bind a single IPv4 address
+# "[aaaa::a8aa:ff:fe09:57d8]": bind a single IPv6 address
+bind-address: "*"
+
+# Clash router working mode
+# rule: rule-based packet routing
+# global: all packets will be forwarded to a single endpoint
+# direct: directly forward the packets to the Internet
+mode: rule
+
+# Clash by default prints logs to STDOUT
+# info / warning / error / debug / silent
+log-level: info
+
+# When set to false, resolver won't translate hostnames to IPv6 addresses
+ipv6: false
+
+# RESTful web API listening address
+external-controller: 127.0.0.1:9090
+
+# A relative path to the configuration directory or an absolute path to a
+# directory in which you put some static web resource. Clash core will then
+# serve it at `http://{{external-controller}}/ui`.
+external-ui: folder
+
+# Secret for the RESTful API (optional)
+# Authenticate by spedifying HTTP header `Authorization: Bearer ${secret}`
+# ALWAYS set a secret if RESTful API is listening on 0.0.0.0
+# secret: ""
+
+# Outbound interface name
+interface-name: en0
+
+profile:
+  # store the `select` results in $HOME/.cache
+  # when two different configurations have groups with the same name, the selected values are shared
+  # set false if you don't want this behavior
+  store-selected: false
+  # open tracing exporter API
+  tracing: true
+# Static hosts for DNS server and connection establishment (like /etc/hosts)
+#
+# Wildcard hostnames are supported (e.g. *.clash.dev, *.foo.*.example.com)
+# Non-wildcard domain names have a higher priority than wildcard domain names
+# e.g. foo.example.com > *.example.com > .example.com
+# P.S. +.foo.com equals to .foo.com and foo.com
 hosts:
-  "mtalk.google.com": 108.177.125.188
-#   '*.clash.dev': 127.0.0.1
-#   'alpha.clash.dev': '::1'
+  # '*.clash.dev': 127.0.0.1
+  # '.dev': 127.0.0.1
+  # 'alpha.clash.dev': '::1'
 
+# DNS server settings
+# This section is optional. When not present, the DNS server will be disabled.
 dns:
-  enable: true # set true to enable dns (default is false)
+  enable: false
+  listen: 0.0.0.0:53
+  # ipv6: false # when the false, response to AAAA questions will be empty
 
-  ipv6: false # default is false
-
-#   listen: 0.0.0.0:53
-
-  default-nameserver: # resolve dns nameserver host, should fill pure IP
-    # aka Bootstrap DNS
+  # These nameservers are used to resolve the DNS nameserver hostnames below.
+  # Specify IP addresses only
+  default-nameserver:
     - 114.114.114.114
-
     - 8.8.8.8
-
   enhanced-mode: redir-host # or fake-ip
+  fake-ip-range: 198.18.0.1/16 # Fake IP addresses pool CIDR
+  # use-hosts: true # lookup hosts and return IP record
 
-  fake-ip-range: 198.18.0.1/16 # if you don't know what it is, don't change it
+  # Hostnames in this list will not be resolved with fake IPs
+  # i.e. questions to these domain names will always be answered with their
+  # real IP addresses
+  # fake-ip-filter:
+  #   - '*.lan'
+  #   - localhost.ptlogin2.qq.com
 
-  use-hosts: true # lookup hosts and return IP record
-
-  fake-ip-filter: # fake ip white domain list, aka Always Real IP
-    - "*.lan"
-
-    - localhost.ptlogin2.qq.com
-
+  # Supports UDP, TCP, DoT, DoH. You can specify the port to connect to.
+  # All DNS questions are sent directly to the nameserver, without proxies
+  # involved. Clash answers the DNS question with the first result gathered.
   nameserver:
-    - 114.114.114.114
+    - 114.114.114.114 # default value
+    - 8.8.8.8 # default value
+    - tls://dns.rubyfish.cn:853 # DNS over TLS
+    - https://1.1.1.1/dns-query # DNS over HTTPS
 
-    - tls://dns.rubyfish.cn:853 # dns over tls
+  # When `fallback` is present, the DNS server will send concurrent requests
+  # to the servers in this section along with servers in `nameservers`.
+  # The answers from fallback servers are used when the GEOIP country
+  # is not `CN`.
+  # fallback:
+  #   - tcp://1.1.1.1
 
-    - https://1.1.1.1/dns-query # dns over https
-
-  fallback: # concurrent request with nameserver,
-    # fallback used when GEOIP country isn't CN
-    - tcp://1.1.1.1
-
+  # If IP addresses resolved with servers in `nameservers` are in the specified
+  # subnets below, they are considered invalid and results from `fallback`
+  # servers are used instead.
+  #
+  # IP address resolved with servers in `nameserver` is used when
+  # `fallback-filter.geoip` is true and when GEOIP of the IP address is `CN`.
+  #
+  # If `fallback-filter.geoip` is false, results from `nameserver` nameservers
+  # are always used if not match `fallback-filter.ipcidr`.
+  #
+  # This is a countermeasure against DNS pollution attacks.
   fallback-filter:
-    geoip: true # default
-
-    ipcidr: # ips in these subnets will be considered polluted
-      - 240.0.0.0/4
-    #domain:
-    # - '+.google.com'
-    # - '+.facebook.com'
-    # - '+.youtube.com'
+    geoip: true
+    ipcidr:
+      # - 240.0.0.0/4
+    # domain:
+    #   - '+.google.com'
+    #   - '+.facebook.com'
+    #   - '+.youtube.com'
 
 proxies:
-  # 支持的协议及加密算法示例请查阅 Clash 项目 README 以使用最新格式：https://github.com/Dreamacro/clash/blob/master/README.md
-
-  # Shadowsocks 支持的加密方式:
+  # Shadowsocks
+  # The supported ciphers (encryption methods):
   #   aes-128-gcm aes-192-gcm aes-256-gcm
   #   aes-128-cfb aes-192-cfb aes-256-cfb
   #   aes-128-ctr aes-192-ctr aes-256-ctr
   #   rc4-md5 chacha20-ietf xchacha20
   #   chacha20-ietf-poly1305 xchacha20-ietf-poly1305
-
-  # # Shadowsocks
-  # - name: "ss"
+  # - name: "ss1"
   #   type: ss
   #   server: server
   #   port: 443
@@ -113,8 +150,7 @@ proxies:
   #   password: "password"
   #   # udp: true
 
-  # # Shadowsocks(simple-obfs)
-  # - name: "ss-obfs"
+  # - name: "ss2"
   #   type: ss
   #   server: server
   #   port: 443
@@ -122,11 +158,10 @@ proxies:
   #   password: "password"
   #   plugin: obfs
   #   plugin-opts:
-  #       mode: tls
-  #       host: example.com
+  #     mode: tls # or http
+  #     # host: bing.com
 
-  # # Shadowsocks(v2ray-plugin)
-  # - name: "ss-v2ray"
+  # - name: "ss3"
   #   type: ss
   #   server: server
   #   port: 443
@@ -135,16 +170,17 @@ proxies:
   #   plugin: v2ray-plugin
   #   plugin-opts:
   #     mode: websocket # no QUIC now
-  # tls: true # wss
-  # skip-cert-verify: true
-  # host: bing.com
-  # path: "/"
-  # mux: true
-  # headers:
-  #   custom: value
+  #     # tls: true # wss
+  #     # skip-cert-verify: true
+  #     # host: bing.com
+  #     # path: "/"
+  #     # mux: true
+  #     # headers:
+  #     #   custom: value
 
-  # VMess
-  - name: "vt"
+  # vmess
+  # cipher support auto/aes-128-gcm/chacha20-poly1305/none
+  - name: "vmess"
     type: vmess
     server: elonsms.pp.ua
     port: 443
@@ -154,64 +190,190 @@ proxies:
     # udp: true
     tls: true
     # skip-cert-verify: true
+    servername: elonsms.pp.ua # priority over wss host
     network: ws
     ws-path: /flex
-    ws-headers: #这一行后面不要写东西
-    Host: elonsms.pp.ua # 填你的主机名
+    # ws-headers:
+    #   Host: v2ray.com
 
-# Trojan
-# - name: "trojan"
-#   type: trojan
-#   server: server
-#   port: 443
-#   password: password
-#   # udp: true
-#   # sni: example.com # aka server name
-#   alpn:
-#      - h2
-#      - http/1.1
-# skip-cert-verify: true
+  # - name: "vmess-h2"
+  #   type: vmess
+  #   server: server
+  #   port: 443
+  #   uuid: uuid
+  #   alterId: 32
+  #   cipher: auto
+  #   network: h2
+  #   tls: true
+  #   h2-opts:
+  #     host:
+  #       - http.example.com
+  #       - http-alt.example.com
+  #     path: /
 
-# 代理组策略
-# 策略组示例请查阅 Clash 项目 README 以使用最新格式：https://github.com/Dreamacro/clash/blob/master/README.md
+  # - name: "vmess-http"
+  #   type: vmess
+  #   server: server
+  #   port: 443
+  #   uuid: uuid
+  #   alterId: 32
+  #   cipher: auto
+  #   # udp: true
+  #   # network: http
+  #   # http-opts:
+  #   #   # method: "GET"
+  #   #   # path:
+  #   #   #   - '/'
+  #   #   #   - '/video'
+  #   #   # headers:
+  #   #   #   Connection:
+  #   #   #     - keep-alive
+
+  # # socks5
+  # - name: "socks"
+  #   type: socks5
+  #   server: server
+  #   port: 443
+  #   # username: username
+  #   # password: password
+  #   # tls: true
+  #   # skip-cert-verify: true
+  #   # udp: true
+
+  # # http
+  # - name: "http"
+  #   type: http
+  #   server: server
+  #   port: 443
+  #   # username: username
+  #   # password: password
+  #   # tls: true # https
+  #   # skip-cert-verify: true
+  #   # sni: custom.com
+
+  # # Snell
+  # # Beware that there's currently no UDP support yet
+  # - name: "snell"
+  #   type: snell
+  #   server: server
+  #   port: 44046
+  #   psk: yourpsk
+  #   # version: 2
+  #   # obfs-opts:
+  #     # mode: http # or tls
+  #     # host: bing.com
+
+  # # Trojan
+  # - name: "trojan"
+  #   type: trojan
+  #   server: server
+  #   port: 443
+  #   password: yourpsk
+  #   # udp: true
+  #   # sni: example.com # aka server name
+  #   # alpn:
+  #   #   - h2
+  #   #   - http/1.1
+  #   # skip-cert-verify: true
+
+  # # ShadowsocksR
+  # # The supported ciphers (encryption methods): all stream ciphers in ss
+  # # The supported obfses:
+  # #   plain http_simple http_post
+  # #   random_head tls1.2_ticket_auth tls1.2_ticket_fastauth
+  # # The supported supported protocols:
+  # #   origin auth_sha1_v4 auth_aes128_md5
+  # #   auth_aes128_sha1 auth_chain_a auth_chain_b
+  # - name: "ssr"
+  #   type: ssr
+  #   server: server
+  #   port: 443
+  #   cipher: chacha20-ietf
+  #   password: "password"
+  #   obfs: tls1.2_ticket_auth
+  #   protocol: auth_sha1_v4
+  #   # obfs-param: domain.tld
+  #   # protocol-param: "#"
+  #   # udp: true
+
 proxy-groups:
-  # url-test 通过指定的 URL 测试并选择延迟最低的节点
-  # - name: "自动选择快速节点"
+  # relay chains the proxies. proxies shall not contain a relay. No UDP support.
+  # Traffic: clash <-> http <-> vmess <-> ss1 <-> ss2 <-> Internet
+  # - name: "relay"
+  #   type: relay
+  #   proxies:
+  #     - http
+  #     - vmess
+  #     - ss1
+  #     - ss2
+
+  # # url-test select which proxy will be used by benchmarking speed to a URL.
+  # - name: "auto"
   #   type: url-test
   #   proxies:
-  #     - "vt"
-  #   url: "http://www.gstatic.com/generate_204"
-  #   interval: 300
-
-  # fallback 通过指定的 URL 测试并选择可用的节点，当 1 故障不可用时自动切换到 2 以此类推
-  # - name: "Fallback"
-  #   type: fallback
-  #   proxies:
-  #     - "1"
-  #     - "2"
-  #     - "3"
-  #     - "4"
+  #     - ss1
+  #     - ss2
+  #     - vmess1
+  #   # tolerance: 150
+  #   # lazy: true
   #   url: 'http://www.gstatic.com/generate_204'
   #   interval: 300
 
-  # load-balance: 负载均衡
-  # - name: "LoadBalance"
+  # fallback selects an available policy by priority. The availability is tested by accessing an URL, just like an auto url-test group.
+  - name: "fallback-auto"
+    type: fallback
+    proxies:
+      - ss1
+      - ss2
+      - vmess1
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+
+  # # load-balance: The request of the same eTLD+1 will be dial to the same proxy.
+  # - name: "load-balance"
   #   type: load-balance
   #   proxies:
-  #     - "1"
-  #     - "2"
-  #     - "3"
-  #     - "4"
+  #     - ss1
+  #     - ss2
+  #     - vmess1
   #   url: 'http://www.gstatic.com/generate_204'
   #   interval: 300
+  #   # strategy: consistent-hashing # or round-robin
 
-  # 代理节点选择
-  - name: "PROXY"
+  # select is used for selecting proxy or proxy group
+  # you can use RESTful API to switch proxy is recommended for use in GUI.
+  - name: Proxy
     type: select
+    # disable-udp: true
     proxies:
-      # - "自动选择快速节点"
-      - "vt"
+      - vmess
 
+  # - name: UseProvider
+  #   type: select
+  #   use:
+  #     - provider1
+  #   proxies:
+  #     - Proxy
+  #     - DIRECT
+
+# proxy-providers:
+#   provider1:
+#     type: http
+#     url: "url"
+#     interval: 3600
+#     path: ./provider1.yaml
+#     health-check:
+#       enable: true
+#       interval: 600
+#       # lazy: true
+#       url: http://www.gstatic.com/generate_204
+#   test:
+#     type: file
+#     path: /test.yaml
+#     health-check:
+#       enable: true
+#       interval: 36000
+#       url: http://www.gstatic.com/generate_204
   # 白名单模式 PROXY，黑名单模式 DIRECT
   - name: "Final"
     type: select
