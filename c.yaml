@@ -134,7 +134,7 @@ proxies:
     # udp: true
     tls: true
     # skip-cert-verify: true
-    servername: elonsms.pp.ua
+    tls-servername: elonsms.pp.ua
     network: ws
     ws-path: /flex
     ws-headers: #这一行后面不要写东西
