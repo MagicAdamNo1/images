@@ -200,25 +200,25 @@ proxy-groups:
       - "DIRECT"
       - "PROXY"
 
-#   # Apple 服务代理
-#   - name: "Apple"
-#     type: select
-#     proxies:
-#       - "DIRECT"
-#       - "PROXY"
+  # Apple 服务代理
+  - name: "Apple"
+    type: select
+    proxies:
+      - "DIRECT"
+      - "PROXY"
 
-#   # 国际流媒体服务
-#   - name: "GlobalMedia"
-#     type: select
-#     proxies:
-#       - "PROXY"
-#       - "v2ray"
-#   # 大陆流媒体面向港澳台限定服务
-#   - name: "HKMTMedia"
-#     type: select
-#     proxies:
-#       - "DIRECT"
-#       - "v2ray"
+  # 国际流媒体服务
+  - name: "GlobalMedia"
+    type: select
+    proxies:
+      - "PROXY"
+      - "vt"
+  # 大陆流媒体面向港澳台限定服务
+  - name: "HKMTMedia"
+    type: select
+    proxies:
+      - "DIRECT"
+      - "vt"
 
 # 规则
 rules:
