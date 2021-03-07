@@ -959,6 +959,7 @@ rules:
   - DOMAIN-SUFFIX,apkmirror.com,PROXY
   - DOMAIN-SUFFIX,apkmonk.com,PROXY
   - DOMAIN-SUFFIX,apkpure.com,PROXY
+  - DOMAIN-SUFFIX,appcenter.ms,PROXY
   - DOMAIN-SUFFIX,aptoide.com,PROXY
   - DOMAIN-SUFFIX,archive.is,PROXY
   - DOMAIN-SUFFIX,archive.org,PROXY
