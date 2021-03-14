@@ -883,6 +883,7 @@ rules:
   # > Microsoft
   - DOMAIN-SUFFIX,onedrive.live.com,PROXY
   - DOMAIN-SUFFIX,xboxlive.com,PROXY
+  - IP-CIDR,52.175.9.80/20,PROXY,no-resolve
   # > Facebook
   - DOMAIN-SUFFIX,cdninstagram.com,PROXY
   - DOMAIN-SUFFIX,fb.com,PROXY
