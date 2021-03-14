@@ -1082,6 +1082,7 @@ rules:
   - DOMAIN-SUFFIX,ipfs.io,PROXY
   - DOMAIN-SUFFIX,issuu.com,PROXY
   - DOMAIN-SUFFIX,istockphoto.com,PROXY
+  - DOMAIN-SUFFIX,iwank.tv,PROXY
   - DOMAIN-SUFFIX,japantimes.co.jp,PROXY
   - DOMAIN-SUFFIX,jiji.com,PROXY
   - DOMAIN-SUFFIX,jinx.com,PROXY
