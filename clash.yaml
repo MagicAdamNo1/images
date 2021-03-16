@@ -953,6 +953,7 @@ rules:
   - DOMAIN-SUFFIX,abc.com,PROXY
   - DOMAIN-SUFFIX,abc.net.au,PROXY
   - DOMAIN-SUFFIX,abebooks.com,PROXY
+  - DOMAIN-SUFFIX,adxadserv.com,PROXY
   - DOMAIN-SUFFIX,amazon.co.jp,PROXY
   - DOMAIN-SUFFIX,apigee.com,PROXY
   - DOMAIN-SUFFIX,apk-dl.com,PROXY
