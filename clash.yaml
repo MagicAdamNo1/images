@@ -1244,6 +1244,7 @@ rules:
   - DOMAIN-SUFFIX,xn--i2ru8q2qg.com,PROXY
   - DOMAIN-SUFFIX,xnxx.com,PROXY
   - DOMAIN-SUFFIX,xvideos.com,PROXY
+  - DOMAIN-SUFFIX,xxxscenes.net,PROXY
   - DOMAIN-SUFFIX,yahoo.com,PROXY
   - DOMAIN-SUFFIX,yandex.ru,PROXY
   - DOMAIN-SUFFIX,ycombinator.com,PROXY
