@@ -953,7 +953,6 @@ rules:
   - DOMAIN-SUFFIX,abc.com,PROXY
   - DOMAIN-SUFFIX,abc.net.au,PROXY
   - DOMAIN-SUFFIX,abebooks.com,PROXY
-  - DOMAIN-SUFFIX,adxadserv.com,PROXY
   - DOMAIN-SUFFIX,amazon.co.jp,PROXY
   - DOMAIN-SUFFIX,apigee.com,PROXY
   - DOMAIN-SUFFIX,apk-dl.com,PROXY
@@ -1085,6 +1084,7 @@ rules:
   - DOMAIN-SUFFIX,issuu.com,PROXY
   - DOMAIN-SUFFIX,istockphoto.com,PROXY
   - DOMAIN-SUFFIX,iwank.tv,PROXY
+  - DOMAIN-SUFFIX,iyottube.com,PROXY
   - DOMAIN-SUFFIX,japantimes.co.jp,PROXY
   - DOMAIN-SUFFIX,jiji.com,PROXY
   - DOMAIN-SUFFIX,jinx.com,PROXY
@@ -1151,6 +1151,7 @@ rules:
   - DOMAIN-SUFFIX,pcloud.com,PROXY
   - DOMAIN-SUFFIX,picacomic.com,PROXY
   - DOMAIN-SUFFIX,pinimg.com,PROXY
+  - DOMAIN-SUFFIX,pincong.rocks,PROXY
   - DOMAIN-SUFFIX,pixiv.net,PROXY
   - DOMAIN-SUFFIX,player.fm,PROXY
   - DOMAIN-SUFFIX,plurk.com,PROXY
