@@ -1086,6 +1086,7 @@ rules:
   - DOMAIN-SUFFIX,iwank.tv,PROXY
   - DOMAIN-SUFFIX,iyottube.com,PROXY
   - DOMAIN-SUFFIX,japantimes.co.jp,PROXY
+  - DOMAIN-SUFFIX,jav19.com,PROXY
   - DOMAIN-SUFFIX,jiji.com,PROXY
   - DOMAIN-SUFFIX,jinx.com,PROXY
   - DOMAIN-SUFFIX,jkforum.net,PROXY
