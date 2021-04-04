@@ -1193,7 +1193,8 @@ rules:
   - DOMAIN-SUFFIX,startpage.com,PROXY
   - DOMAIN-SUFFIX,steamcommunity.com,PROXY
   - DOMAIN-SUFFIX,steemit.com,PROXY
-  - DOMAIN-SUFFIX,steemitwallet.com,PROXY
+  - DOMAIN-SUFFIX,steemitwallet.com,PROXY 
+  - DOMAIN-SUFFIX,streamtape.com,PROXY
   - DOMAIN-SUFFIX,t66y.com,PROXY
   - DOMAIN-SUFFIX,tapatalk.com,PROXY
   - DOMAIN-SUFFIX,teco-hk.org,PROXY
