@@ -991,6 +991,7 @@ rules:
   - DOMAIN-SUFFIX,books.com.tw,PROXY
   - DOMAIN-SUFFIX,boslife.net,PROXY
   - DOMAIN-SUFFIX,box.com,PROXY
+  - DOMAIN-SUFFIX,boyboy.me,PROXY
   - DOMAIN-SUFFIX,businessinsider.com,PROXY
   - DOMAIN-SUFFIX,bwh1.net,PROXY
   - DOMAIN-SUFFIX,castbox.fm,PROXY
