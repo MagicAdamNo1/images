@@ -1187,6 +1187,7 @@ rules:
   - DOMAIN-SUFFIX,seatguru.com,PROXY
   - DOMAIN-SUFFIX,shadowsocks.org,PROXY
   - DOMAIN-SUFFIX,shopee.tw,PROXY
+  - DOMAIN-SUFFIX,syydh.xyz,PROXY
   - DOMAIN-SUFFIX,slideshare.net,PROXY
   - DOMAIN-SUFFIX,softfamous.com,PROXY
   - DOMAIN-SUFFIX,soundcloud.com,PROXY
