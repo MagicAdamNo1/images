@@ -1143,6 +1143,7 @@ rules:
   - DOMAIN-SUFFIX,nytstyle.com,PROXY
   - DOMAIN-SUFFIX,ok.ru,PROXY
   - DOMAIN-SUFFIX,okex.com,PROXY
+  - DOMAIN-SUFFIX,okxxx.top,PROXY
   - DOMAIN-SUFFIX,on.cc,PROXY
   - DOMAIN-SUFFIX,orientaldaily.com.my,PROXY
   - DOMAIN-SUFFIX,overcast.fm,PROXY
