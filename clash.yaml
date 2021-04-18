@@ -986,6 +986,7 @@ rules:
   - DOMAIN-SUFFIX,bloomberg.cn,PROXY
   - DOMAIN-SUFFIX,bloomberg.com,PROXY
   - DOMAIN-SUFFIX,blubrry.com,PROXY
+  - DOMAIN-SUFFIX,boodigo.com,PROXY
   - DOMAIN-SUFFIX,book.com.tw,PROXY
   - DOMAIN-SUFFIX,booklive.jp,PROXY
   - DOMAIN-SUFFIX,books.com.tw,PROXY
