@@ -1172,6 +1172,7 @@ rules:
   - DOMAIN-SUFFIX,quora.com,PROXY
   - DOMAIN-SUFFIX,quoracdn.net,PROXY
   - DOMAIN-SUFFIX,rakuten.co.jp,PROXY
+  - DOMAIN-SUFFIX,r18.com,PROXY
   - DOMAIN-SUFFIX,readingtimes.com.tw,PROXY
   - DOMAIN-SUFFIX,readmoo.com,PROXY
   - DOMAIN-SUFFIX,redbubble.com,PROXY
