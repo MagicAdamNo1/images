@@ -1210,7 +1210,7 @@ rules:
   - DOMAIN-SUFFIX,theinitium.com,PROXY
   - DOMAIN-SUFFIX,thetvdb.com,PROXY
   - DOMAIN-SUFFIX,tineye.com,PROXY
-  - DOMAIN-SUFFIX,tnaflex.com,PROXY
+  - DOMAIN-SUFFIX,tnaflix.com,PROXY
   - DOMAIN-SUFFIX,torproject.org,PROXY
   - DOMAIN-SUFFIX,tumblr.com,PROXY
   - DOMAIN-SUFFIX,turbobit.net,PROXY
