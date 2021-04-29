@@ -1230,6 +1230,7 @@ rules:
   - DOMAIN-SUFFIX,v2ray.com,PROXY
   - DOMAIN-SUFFIX,viber.com,PROXY
   - DOMAIN-SUFFIX,videopress.com,PROXY
+  - DOMAIN-SUFFIX,video.envy.com,PROXY
   - DOMAIN-SUFFIX,vimeo.com,PROXY
   - DOMAIN-SUFFIX,voachinese.com,PROXY
   - DOMAIN-SUFFIX,voanews.com,PROXY
