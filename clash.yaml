@@ -1424,6 +1424,7 @@ rules:
   - DOMAIN-SUFFIX,ctitv.com.tw,PROXY
   - DOMAIN-SUFFIX,cuhk.edu.hk,PROXY
   - DOMAIN-SUFFIX,cusu.hk,PROXY
+  - DOMAIN-SUFFIX,cnsxhi.com,PROXY
   - DOMAIN-SUFFIX,discord.gg,PROXY
   - DOMAIN-SUFFIX,discuss.com.hk,PROXY
   - DOMAIN-SUFFIX,dropboxapi.com,PROXY
