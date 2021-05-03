@@ -1386,6 +1386,7 @@ rules:
   - DOMAIN-SUFFIX,waymo.com,PROXY
   - DOMAIN-SUFFIX,webmproject.org,PROXY
   - DOMAIN-SUFFIX,webrtc.org,PROXY
+  - DOMAIN-SUFFIX,webptt.com,PROXY
   - DOMAIN-SUFFIX,whatbrowser.org,PROXY
   - DOMAIN-SUFFIX,widevine.com,PROXY
   - DOMAIN-SUFFIX,x.company,PROXY
