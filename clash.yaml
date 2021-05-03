@@ -1431,6 +1431,7 @@ rules:
   - DOMAIN-SUFFIX,flickriver.com,PROXY
   - DOMAIN-SUFFIX,focustaiwan.tw,PROXY
   - DOMAIN-SUFFIX,free.fr,PROXY
+  - DOMAIN-SUFFIX,freesurvey.net,PROXY
   - DOMAIN-SUFFIX,gigacircle.com,PROXY
   - DOMAIN-SUFFIX,hk-pub.com,PROXY
   - DOMAIN-SUFFIX,hosting.co.uk,PROXY
