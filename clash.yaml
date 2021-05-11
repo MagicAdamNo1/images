@@ -1382,6 +1382,7 @@ rules:
   - DOMAIN-SUFFIX,tensorflow.org,PROXY
   - DOMAIN-SUFFIX,tfhub.dev,PROXY
   - DOMAIN-SUFFIX,tiltbrush.com,PROXY
+  - DOMAIN-SUFFIX,twdvd.com,PROXY
   - DOMAIN-SUFFIX,waveprotocol.org,PROXY
   - DOMAIN-SUFFIX,waymo.com,PROXY
   - DOMAIN-SUFFIX,webmproject.org,PROXY
