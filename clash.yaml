@@ -1305,6 +1305,7 @@ rules:
   - DOMAIN-SUFFIX,gettyimages.com,PROXY
   - DOMAIN-SUFFIX,go.com,PROXY
   - DOMAIN-SUFFIX,here.com,PROXY
+  - DOMAIN-SUFFIX,jable.tv,PROXY
   - DOMAIN-SUFFIX,jcpenney.com,PROXY
   - DOMAIN-SUFFIX,jiehua.tv,PROXY
   - DOMAIN-SUFFIX,mailfence.com,PROXY
